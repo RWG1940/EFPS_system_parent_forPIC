@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rs.mapper.DeptMapper">
+
+    <resultMap id="BaseResultMap" type="com.rs.domain.Dept">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="dTotal" column="d_total" jdbcType="INTEGER"/>
+            <result property="dName" column="d_name" jdbcType="VARCHAR"/>
+            <result property="dAvatarpath" column="d_avatarpath" jdbcType="VARCHAR"/>
+            <result property="dCreatetime" column="d_createtime" jdbcType="TIMESTAMP"/>
+            <result property="dUpdatetime" column="d_updatetime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,d_total,d_name,
+        d_avatarpath,d_createtime,d_updatetime
+    </sql>
+    <insert id="createDept">
+        INSERT INTO dept
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dTotal != null">d_total,</if>
+            <if test="dName != null">d_name,</if>
+            <if test="dAvatarpath != null">d_avatarpath,</if>
+            <if test="dCreatetime != null">d_createtime,</if>
+            <if test="dUpdatetime != null">d_updatetime,</if>
+        </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="dTotal != null">#{dTotal},</if>
+                <if test="dName != null">#{dName},</if>
+                <if test="dAvatarpath != null">#{dAvatarpath},</if>
+                <if test="dCreatetime != null">#{dCreatetime},</if>
+                <if test="dUpdatetime != null">#{dUpdatetime},</if>
+            </trim>
+    </insert>
+    <update id="updateDept">
+        UPDATE dept
+        <set>
+            <if test="dTotal != null">d_total = #{dTotal},</if>
+            <if test="dName != null">d_name = #{dName},</if>
+            <if test="dAvatarpath != null">d_avatarpath = #{dAvatarpath},</if>
+            <if test="dCreatetime != null">d_createtime = #{dCreatetime},</if>
+            <if test="dUpdatetime != null">d_updatetime = #{dUpdatetime},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteDept">
+        DELETE FROM dept WHERE id = #{id}
+    </delete>
+    <delete id="deleteDepts">
+        DELETE FROM dept WHERE id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="getAllDepts" resultType="com.rs.domain.Dept">
+        SELECT
+        *
+        FROM dept
+    </select>
+    <select id="getDepts" resultType="com.rs.domain.Dept">
+        SELECT
+        *
+        FROM dept
+        <where>
+            <if test="id != null">
+                AND id LIKE concat('%',#{id},'%')
+            </if>
+            <if test="dName != null">
+                AND d_name LIKE concat('%',#{dName},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getDept" resultType="com.rs.domain.Dept">
+        SELECT
+        *
+        FROM dept
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="dTotal != null">
+                AND d_total = #{dTotal}
+            </if>
+            <if test="dName != null">
+                AND d_name = #{dName}
+            </if>
+            <if test="dAvatarpath != null">
+                AND d_avatarpath = #{dAvatarpath}
+           </if>
+        </where>
+    </select>
+    <select id="findDeptIdCount" resultType="com.rs.domain.DeptCount">
+        SELECT
+            e_deptid,
+            COUNT(e_id) AS d_total
+        FROM
+            emp
+        GROUP BY
+            e_deptid
+    </select>
+</mapper>

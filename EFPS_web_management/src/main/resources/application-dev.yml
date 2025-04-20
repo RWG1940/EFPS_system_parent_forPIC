@@ -1,0 +1,13 @@
+efps:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: image_search
+    username: root
+    password: 194044
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key: LTAI4GKZJ7YKZ8XJ
+    secret-key: 6Z6ZJ5ZJ6ZJ6ZJ6Z
+    bucket: efps-bucket

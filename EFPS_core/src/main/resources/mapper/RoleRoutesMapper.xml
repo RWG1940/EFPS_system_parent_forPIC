@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rs.mapper.RoleRoutesMapper">
+
+    <resultMap id="BaseResultMap" type="com.rs.domain.RoleRoutes">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="rId" column="r_id" jdbcType="INTEGER"/>
+            <result property="roId" column="ro_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,r_id,ro_id
+    </sql>
+    <insert id="insertBatch">
+        insert into role_routes (r_id,ro_id) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.rId},#{item.roId})
+        </foreach>
+    </insert>
+    <select id="getRouteIdsByRoleId" resultType="java.lang.Integer">
+        select ro_id from role_routes where r_id = #{getrId}
+    </select>
+
+</mapper>

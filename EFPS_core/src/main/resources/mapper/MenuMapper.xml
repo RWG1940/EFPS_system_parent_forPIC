@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rs.mapper.MenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.rs.domain.Menu">
+        <id property="mId" column="m_id" jdbcType="INTEGER"/>
+        <result property="mUrl" column="m_url" jdbcType="VARCHAR"/>
+        <result property="mName" column="m_name" jdbcType="VARCHAR"/>
+        <result property="mSign" column="m_sign" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        m_id,m_url,m_name,
+        m_sign
+    </sql>
+    <select id="selectMenuById" resultType="java.lang.String">
+        SELECT m.m_sign
+        FROM menu m
+                 JOIN emp_menu em ON m.m_id = em.m_id
+        WHERE em.e_id = #{eId};
+    </select>
+    <select id="searchList" resultType="com.rs.domain.Menu">
+
+        select * from menu
+        <where>
+            <if test="mName!=null and mName!=''">
+                and m_name like concat('%',#{mName},'%')
+            </if>
+            <if test="mSign!=null and mSign!=''">
+                and m_sign like concat('%',#{mSign},'%')
+            </if>
+            <if test="mUrl!=null and mUrl!=''">
+                and m_url like concat('%',#{mUrl},'%')
+            </if>
+            <if test="mId!=null and mName!=''">
+                and m_id like concat('%',#{mId},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rs.mapper.ImportantMsgMapper">
+
+    <resultMap id="BaseResultMap" type="com.rs.domain.ImportantMsg">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="header" column="header" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,header,content,
+        createTime,updateTime,author,
+        status
+    </sql>
+
+    <!-- 插入一条重要消息记录 -->
+    <insert id="addImportantMsgs" parameterType="com.rs.domain.ImportantMsg">
+        INSERT INTO important_msg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="header != null">header,</if>
+            <if test="content != null">content,</if>
+            <if test="createtime != null">createTime,</if>
+            <if test="updatetime != null">updateTime,</if>
+            <if test="author != null">author,</if>
+            <if test="status != null">status,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="header != null">#{header},</if>
+            <if test="content != null">#{content},</if>
+            <if test="createtime != null">#{createtime},</if>
+            <if test="updatetime != null">#{updatetime},</if>
+            <if test="author != null">#{author},</if>
+            <if test="status != null">#{status},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新一条重要消息记录 -->
+    <update id="updateImportantMsgs" parameterType="com.rs.domain.ImportantMsg">
+        UPDATE important_msg
+        <set>
+            <if test="header != null">header=#{header},</if>
+            <if test="content != null">content=#{content},</if>
+            <if test="createtime != null">createTime=#{createtime},</if>
+            <if test="updatetime != null">updateTime=#{updatetime},</if>
+            <if test="author != null">author=#{author},</if>
+            <if test="status != null">status=#{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除一条或多条重要消息记录 -->
+    <delete id="deleteImportantMsgs">
+        DELETE FROM important_msg WHERE id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 搜索一条或多条重要消息记录 -->
+    <select id="searchImportantMsgs" resultType="com.rs.domain.ImportantMsg">
+        SELECT *
+        FROM important_msg
+        <where>
+            <if test="id != null">id=#{id}</if>
+            <if test="header != null">AND header=#{header}</if>
+            <if test="content != null">AND content=#{content}</if>
+            <if test="createtime != null">AND createtime=#{createtime}</if>
+            <if test="updatetime != null">AND updatetime=#{updatetime}</if>
+            <if test="author != null">AND author=#{author}</if>
+            <if test="status != null">AND status=#{status}</if>
+        </where>
+    </select>
+
+    <!-- 获取所有重要消息记录 -->
+    <select id="getAllImportantMsgs" resultType="com.rs.domain.ImportantMsg">
+        SELECT *
+        FROM important_msg
+        ORDER BY id DESC
+    </select>
+</mapper>
