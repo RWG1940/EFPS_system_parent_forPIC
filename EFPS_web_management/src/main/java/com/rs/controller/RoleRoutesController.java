@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @RestController
 @Slf4j
-@RequestMapping("/roleRoutes")
+@RequestMapping("/rwg/roleRoutes")
 @Api(tags = "角色路由控制器")
 @PreAuthorize("hasAuthority('admin')")
 public class RoleRoutesController {

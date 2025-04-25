@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
-@RequestMapping("/dynamic-route")
+@RequestMapping("/rwg/dynamic-route")
 @Api(tags = "动态路由控制器")
 public class DynamicRoutesController {
     @Autowired

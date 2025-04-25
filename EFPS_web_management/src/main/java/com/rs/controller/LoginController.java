@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
-@RequestMapping("/login")
+@RequestMapping("/rwg/login")
 @Api(tags = "登录控制器")
 public class LoginController {
     @Autowired

@@ -20,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@RequestMapping("/notices")
+@RequestMapping("/rwg/notices")
 @Api(tags = "重要通知控制器")
 public class importantMsgController {
     @Autowired

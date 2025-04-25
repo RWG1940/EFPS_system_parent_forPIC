@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/emps")
+@RequestMapping("/rwg/emps")
 @Api(tags = "职员控制器")
 public class EmpController {
 

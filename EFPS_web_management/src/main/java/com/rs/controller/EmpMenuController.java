@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @RestController
 @Slf4j
-@RequestMapping("/empPermission")
+@RequestMapping("/rwg/empPermission")
 @Api(tags = "角色权限控制器")
 @PreAuthorize("hasAuthority('admin')")
 public class EmpMenuController {

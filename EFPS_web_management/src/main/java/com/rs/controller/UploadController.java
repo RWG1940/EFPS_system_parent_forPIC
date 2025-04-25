@@ -38,7 +38,7 @@ public class UploadController {
 //        return Result.success();
 //    }
 
-    @PostMapping("/upload")
+    @PostMapping("/rwg/upload")
     @ApiOperation("上传")
 
     public ResultResponse upload(@RequestParam("file") MultipartFile image) throws Exception {

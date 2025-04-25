@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
-@RequestMapping("/role")
+@RequestMapping("/rwg/role")
 @Api(tags = "角色控制器")
 @PreAuthorize("hasAuthority('admin')")
 public class RoleController {

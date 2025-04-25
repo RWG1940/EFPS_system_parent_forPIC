@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @Api("找回账户控制器")
-@RequestMapping("/foundMe")
+@RequestMapping("/rwg/foundMe")
 public class FoundController {
     @Autowired
     private EmpService empService;

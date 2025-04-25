@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,18 +34,25 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+    @Bean
+    public HttpFirewall httpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedDoubleSlash(true);
+        return firewall;
+    }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(
-                                new AntPathRequestMatcher("/login"),
-                                new AntPathRequestMatcher("/reg"),
-                                new AntPathRequestMatcher("/foundMe"),
-                                new AntPathRequestMatcher("/upload"),
-                                new AntPathRequestMatcher("/auto-login"),
-                                new AntPathRequestMatcher("/route"),
+                                new AntPathRequestMatcher("/rwg/login"),
+                                new AntPathRequestMatcher("/rwg/reg"),
+                                new AntPathRequestMatcher("/rwg/foundMe"),
+                                new AntPathRequestMatcher("/rwg/upload"),
+                                new AntPathRequestMatcher("/rwg/auto-login"),
+                                new AntPathRequestMatcher("/rwg/route"),
                                 new AntPathRequestMatcher("/favicon.ico"),
                                 new AntPathRequestMatcher("/doc.html"),
                                 new AntPathRequestMatcher("/webjars/**"),

@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/depts")
+@RequestMapping("/rwg/depts")
 @Api(tags = "部门控制器")
 public class DeptController {
 

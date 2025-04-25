@@ -23,8 +23,8 @@ public class Knife4jConfig {
     @Bean
     public Docket docket() {
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("EFPS-system API文档")
-                .description("# 基于 Spring Boot 与 Vue3 的塔台电子进程单管理系统。")
+                .title("EFPS-system for pic API文档")
+                .description("# REN")
                 .version("1.0")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)

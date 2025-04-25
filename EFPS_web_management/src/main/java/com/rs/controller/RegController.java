@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
-@RequestMapping("/reg")
+@RequestMapping("/rwg/reg")
 @Api(tags = "注册控制器")
 
 public class RegController {

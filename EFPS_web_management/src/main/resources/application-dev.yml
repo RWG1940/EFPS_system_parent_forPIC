@@ -1,11 +1,11 @@
 efps:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    host: localhost
+    host: 192.168.255.121
     port: 3306
     database: image_search
     username: root
-    password: 194044
+    password: 123456
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
     access-key: LTAI4GKZJ7YKZ8XJ

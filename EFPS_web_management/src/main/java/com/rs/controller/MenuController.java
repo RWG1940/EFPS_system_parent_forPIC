@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
-@RequestMapping("/permission")
+@RequestMapping("/rwg/permission")
 @Api(tags = "权限控制器")
 @PreAuthorize("hasAuthority('admin')")
 public class MenuController {
